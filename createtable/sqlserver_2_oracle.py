@@ -104,6 +104,7 @@ def create_table_in_oracle(cursor, create_table_sql):
 
 # 主函数
 def main():
+    # 执行脚本样例 python sqlserver_2_oracle.py --sqlserver_server 10.1.0.134 --sqlserver_database RPT --sqlserver_username mis --sqlserver_password ds_sqlserver@mising --table_name DUR_MIS_HIS_GZKK
     parser = argparse.ArgumentParser(description="Create Oracle table from SQL Server table structure.")
     parser.add_argument('--sqlserver_server', required=True, help='SQL Server host')
     parser.add_argument('--sqlserver_database', required=True, help='SQL Server database name')

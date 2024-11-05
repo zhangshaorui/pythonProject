@@ -69,11 +69,11 @@ def build_starrocks_create_table_sql(table_name, columns, primary_keys, type_map
         create_table_sql += f"  {column_name} {starrocks_type},\n"
 
     # 去掉最后一个逗号和换行符，并添加表引擎
-    create_table_sql = create_table_sql.rstrip(',\n') + '\n) ENGINE=OLAP'
+    create_table_sql = create_table_sql.rstrip(',\n') + '\n) ENGINE=OLAP \n'
 
     # 添加主键信息
     if primary_keys:
-        create_table_sql += (f"PRIMARY KEY ({', '.join(primary_keys)})" + "\n")
+        create_table_sql += f"PRIMARY KEY ({','.join(primary_keys)})"
 
     # 添加其他属性，根据实际情况进行修改，分区先写死为STORECODE
     create_table_sql += (f"""
@@ -95,7 +95,7 @@ def main():
     oracle_dsn = cx_Oracle.makedsn('10.1.0.94', '1521', service_name='RPDB')
     username = 'RP'
     password = 'RP'
-    table_name = 'BZ_MSD_D_ME_HIS'
+    table_name = 'DA_HT_FIELD'
 
     # 获取Oracle表结构
     columns, primary_keys = get_oracle_table_structure(oracle_dsn, username, password, table_name)
