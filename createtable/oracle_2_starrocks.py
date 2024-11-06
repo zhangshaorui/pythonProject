@@ -90,7 +90,7 @@ PROPERTIES (
     return create_table_sql
 
 def main():
-    # 执行脚本样例 python oracle_2_starrocks.py --dsn "10.1.0.94:1521/RPDB" --username "RP" --password "RP" --table_name "DA_HT_FIELD"
+    # 执行脚本样例 python oracle_2_starrocks.py --dsn "xxxx:1521/xxxx" --username "xxxx" --password "xxxx" --table_name "xxxx"
     # 创建命令行参数解析器
     parser = argparse.ArgumentParser(description="Generate StarRocks CREATE TABLE SQL from Oracle table structure.")
     parser.add_argument("--dsn", required=True, help="Oracle DSN (Data Source Name)")

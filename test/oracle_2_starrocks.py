@@ -92,10 +92,10 @@ PROPERTIES (
 
 def main():
     # Oracle数据库连接信息
-    oracle_dsn = cx_Oracle.makedsn('10.1.0.94', '1521', service_name='RPDB')
-    username = 'RP'
-    password = 'RP'
-    table_name = 'DA_HT_FIELD'
+    oracle_dsn = cx_Oracle.makedsn('xxxx', '1521', service_name='xxxx')
+    username = 'xxxx'
+    password = 'xxxx'
+    table_name = 'xxxx'
 
     # 获取Oracle表结构
     columns, primary_keys = get_oracle_table_structure(oracle_dsn, username, password, table_name)

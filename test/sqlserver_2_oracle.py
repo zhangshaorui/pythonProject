@@ -110,16 +110,16 @@ def create_table_in_oracle(cursor, create_table_sql):
 
 # 主函数
 def main():
-    sqlserver_server = '10.1.0.134'
-    sqlserver_database = 'RPT'
-    sqlserver_username = 'mis'
-    sqlserver_password = 'ds_sqlserver@mising'
+    sqlserver_server = 'xxxx'
+    sqlserver_database = 'xxxx'
+    sqlserver_username = 'xxxx'
+    sqlserver_password = 'xxxx'
 
     # oracle_username = 'your_oracle_username'
     # oracle_password = 'your_oracle_password'
     # oracle_dsn = 'your_oracle_dsn'
 
-    table_name = 'DUR_DA_GZ_NEW'
+    table_name = 'xxxx'
     # 如果是DUR_开头的去掉前缀
     if table_name.startswith('DUR_'):
         target_name = table_name[4:]

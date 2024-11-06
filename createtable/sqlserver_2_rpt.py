@@ -75,7 +75,7 @@ def create_new_table(server, database, username, password, original_table_name):
     conn.close()
 
 if __name__ == "__main__":
-    # 执行脚本样例 python sqlserver_2_rpt.py --sqlserver_server 10.1.0.134 --sqlserver_database CMT_DATA_5026 --sqlserver_username mis --sqlserver_password ds_sqlserver@mising --table_name CG_FCYY_MX_ZSP
+    # 执行脚本样例 python sqlserver_2_rpt.py --sqlserver_server xxxx --sqlserver_database xxxx --sqlserver_username xxxx --sqlserver_password xxxx --table_name xxxx
     parser = argparse.ArgumentParser(description="Create a new table based on an existing table in SQL Server.")
     parser.add_argument('--sqlserver_server', required=True, help='SQL Server host')
     parser.add_argument('--sqlserver_database', required=True, help='SQL Server database name')

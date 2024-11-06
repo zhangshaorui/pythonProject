@@ -3,13 +3,13 @@
 import pyodbc
 
 # 数据库连接信息
-server = '10.1.0.134'
-database = 'CMT_DATA_5026'
-username = 'mis'
-password = 'ds_sqlserver@mising'
+server = 'xxxx'
+database = 'xxxx'
+username = 'xxxx'
+password = 'xxxx'
 
 # 表名
-original_table_name = '_RZ_LS_PS_MX'
+original_table_name = 'xxxx'
 new_table_name = f'DUR_{original_table_name}'
 
 # 连接到SQL Server
