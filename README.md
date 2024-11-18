@@ -1,5 +1,9 @@
 **自动创建表脚本**
 
+文件夹说明：
+createtable：存放的是在windows上面执行python的脚本
+test：存放的是在本地执行调试的脚本
+
 安装对应的数据库驱动
 
 pip install pyodbc
