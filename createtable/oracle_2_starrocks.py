@@ -22,6 +22,8 @@ def get_oracle_table_structure(oracle_dsn, username, password, table_name):
         SELECT column_name, data_type, data_length, data_precision, data_scale
         FROM all_tab_columns
         WHERE table_name = '{table_name}'
+        AND OWNER = '{username}'
+        ORDER BY COLUMN_ID 
     """)
     columns = cursor.fetchall()
 
@@ -34,6 +36,7 @@ def get_oracle_table_structure(oracle_dsn, username, password, table_name):
             FROM user_constraints
             WHERE table_name = '{table_name}' AND constraint_type = 'P'
         )
+        AND OWNER = '{username}'
     """)
     primary_keys = [row[0] for row in cursor.fetchall()]
 
