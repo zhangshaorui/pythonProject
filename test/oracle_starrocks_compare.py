@@ -12,17 +12,17 @@ import pymysql
 import requests  # 导入requests库用于发送HTTP请求
 
 # Oracle数据库连接配置
-oracle_dsn = cx_Oracle.makedsn('10.1.0.180', '1521', sid='dsdqmis')
-oracle_user = 'DSDQ'
-oracle_password = 'Emart_DaSDQ'
-oracle_database = 'DSDQ'
+oracle_dsn = cx_Oracle.makedsn('xxxx', '1521', service_name='xxxx')
+oracle_user = 'xxxx'
+oracle_password = 'xxxx'
+oracle_database = 'xxxx'
 
 # StarRocks数据库连接配置
-starrocks_host = '10.1.2.231'
+starrocks_host = 'xxxx'
 starrocks_port = 9030  # 默认端口
-starrocks_user = 'root'
-starrocks_password = 'Ds_mysql@starrocks'
-starrocks_database = 'dsdq'
+starrocks_user = 'xxxx'
+starrocks_password = 'xxxx'
+starrocks_database = 'xxxx'
 
 # 连接到Oracle数据库
 oracle_connection = cx_Oracle.connect(user=oracle_user, password=oracle_password, dsn=oracle_dsn)
@@ -33,7 +33,7 @@ starrocks_connection = pymysql.connect(host=starrocks_host, port=starrocks_port,
 starrocks_cursor = starrocks_connection.cursor()
 
 # 查询StarRocks中的所有MIS_HIS_开头的表
-starrocks_query = "SHOW TABLES LIKE 'MIS_HIS_%'"
+starrocks_query = "SHOW TABLES LIKE 'TG_ORDER%'"
 starrocks_cursor.execute(starrocks_query)
 starrocks_tables = [table[0] for table in starrocks_cursor.fetchall()]
 
@@ -42,7 +42,9 @@ alarm_messages = []
 
 for table_name in starrocks_tables:
     # 查询Oracle中的数据条数
-    oracle_query = f"SELECT COUNT(1) FROM {oracle_database}.{table_name}"
+    # oracle_query = f"SELECT COUNT(1) FROM {oracle_database}.{table_name}"
+    # oracle_query = f"-- SELECT COUNT(1) FROM {oracle_database}.{table_name} where RQ >= TO_DATE('2023-01-01', 'YYYY-MM-DD')"
+    oracle_query = f"SELECT COUNT(1) FROM {oracle_database}.{table_name} where JYSJ >= TO_DATE('2023-01-01', 'YYYY-MM-DD')"
     oracle_cursor.execute(oracle_query)
     oracle_count = oracle_cursor.fetchone()[0]
 
@@ -61,21 +63,22 @@ for table_name in starrocks_tables:
         alarm_messages.append(alarm_message)
         # 输出结果
         print(f"{alarm_message}")
-
+    else:
+        print("数据全部一致")
 # 发送汇总的企业微信告警
-if alarm_messages:
-    webhook_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=5e6565b1-6759-4a8d-8ad2-3b2f22198338"
-    message = "\n".join(alarm_messages)
-    payload = {
-        "msgtype": "text",
-        "text": {
-            "content": message
-        }
-    }
-    response = requests.post(webhook_url, json=payload)
-    print(f"告警发送结果: {response.status_code}")
-else:
-    print("数据全部一致")
+# if alarm_messages:
+#     webhook_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=5e6565b1-6759-4a8d-8ad2-3b2f22198338"
+#     message = "\n".join(alarm_messages)
+#     payload = {
+#         "msgtype": "text",
+#         "text": {
+#             "content": message
+#         }
+#     }
+#     response = requests.post(webhook_url, json=payload)
+#     print(f"告警发送结果: {response.status_code}")
+# else:
+#     print("数据全部一致")
 
 # 关闭连接
 oracle_cursor.close()
