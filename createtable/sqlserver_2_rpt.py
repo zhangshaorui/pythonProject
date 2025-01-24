@@ -8,7 +8,7 @@ def create_new_table(server, database, username, password, original_table_name):
     new_table_name = f'DUR_{original_table_name}'
 
     # 连接到SQL Server
-    conn_str = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+    conn_str = f'DRIVER={{ODBC Driver 13 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
     conn = pyodbc.connect(conn_str)
     cursor = conn.cursor()
 

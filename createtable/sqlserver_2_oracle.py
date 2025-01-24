@@ -20,7 +20,7 @@ data_type_map = {
 
 # 连接SQL Server数据库
 def connect_to_sqlserver(server, database, username, password):
-    conn_str = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+    conn_str = f'DRIVER={{ODBC Driver 13 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
     conn = pyodbc.connect(conn_str)
     return conn
 
